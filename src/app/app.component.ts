@@ -10,6 +10,7 @@ import { Page2 } from '../pages/page2/page2';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = Page1;
