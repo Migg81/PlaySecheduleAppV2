@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { TeamHomePage } from '../pages';
 /*
   Generated class for the Teams page.
 
@@ -8,15 +8,22 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-teams',
   templateUrl: 'teams.html'
 })
 export class TeamsPage {
 
+  teams=[
+      {id:1,name:"HC Elite"},
+      {id:1,name:"Team Takeover"},
+      {id:1,name:"DC Thendur"}
+  ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeamsPage');
   }
 
+  itemTapped($event,team){
+    this.navCtrl.push(TeamHomePage,team);
+  }
 }
