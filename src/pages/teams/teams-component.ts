@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TeamHomePage } from '../pages';
+import { TeamDetailsPage } from '../pages';
+
+import { EliteApi } from '../../shared/shared';
+
+
 /*
   Generated class for the Teams page.
 
@@ -12,18 +16,18 @@ import { TeamHomePage } from '../pages';
 })
 export class TeamsPage {
 
-  teams=[
-      {id:1,name:"HC Elite"},
-      {id:1,name:"Team Takeover"},
-      {id:1,name:"DC Thendur"}
-  ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  teams=[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eliteapi:EliteApi) {}
 
   ionViewDidLoad() {
+    this.eliteapi.getTournamentData(this.navParams.data.id).subscribe(
+      s=>{this.teams=s.teams;}
+    );
     console.log('ionViewDidLoad TeamsPage');
   }
 
   itemTapped($event,team){
-    this.navCtrl.push(TeamHomePage,team);
+    this.navCtrl.push(TeamDetailsPage,team);
   }
 }
