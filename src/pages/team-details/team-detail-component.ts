@@ -16,6 +16,7 @@ import * as _ from 'lodash';
 export class TeamDetailsPage {
   team:any;
   games:any[];
+  
   private tourneyData:any;
 
   constructor(

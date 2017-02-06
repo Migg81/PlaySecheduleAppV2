@@ -1,14 +1,12 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Team  Home</ion-title>
+    <ion-title>{{team.name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-tabs padding>
-    <ion-tab tabTitle="Team" [root]="teamDetailTab" tabIcon="basketball"></ion-tab>
-    <ion-tab tabTitle="Standings" [root]="standingsTab" tabIcon="podium"></ion-tab>
+    <ion-tab tabTitle="Team" [root]="teamDetailTab" [rootParams] ="team" tabIcon="basketball"></ion-tab>
+    <ion-tab tabTitle="Standings" [root]="standingsTab" [rootParams] ="team" tabIcon="podium"></ion-tab>
 </ion-tabs>
 <ion-tabs>
   <ion-tab [root]="tab1Root"></ion-tab>
