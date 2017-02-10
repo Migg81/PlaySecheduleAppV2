@@ -4,7 +4,9 @@ import { HttpModule} from '@angular/http';
 import { MyApp } from './app.component';
 import { MyTeamsPage } from '../pages/pages';
 import { TournamentsPage,TeamsPage,TeamDetailsPage,StandingsPage,TeamHomePage ,GamePage} from '../pages/pages';
-import { EliteApi } from '../shared/shared';
+import { EliteApi,UserSettings } from '../shared/shared';
+import { Storage } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -22,15 +24,15 @@ import { EliteApi } from '../shared/shared';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    MyTeamsPage,
-    TournamentsPage,
-    TeamsPage,
-    TeamDetailsPage,
-     TeamHomePage,
-    StandingsPage,
-    GamePage
+      MyApp,
+      MyTeamsPage,
+      TournamentsPage,
+      TeamsPage,
+      TeamDetailsPage,
+      TeamHomePage,
+      StandingsPage,
+      GamePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},EliteApi ,HttpModule]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},EliteApi,Storage ,HttpModule,UserSettings]
 })
 export class AppModule {}

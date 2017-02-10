@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {LoadingController, NavController, NavParams } from 'ionic-angular';
 
 import {TeamHomePage, TournamentsPage } from '../pages';
-import { EliteApi } from '../../shared/shared';
+import { EliteApi ,UserSettings} from '../../shared/shared';
 
 
 @Component({
@@ -11,24 +11,14 @@ import { EliteApi } from '../../shared/shared';
 })
 export class MyTeamsPage {
 
-  favorites=[
-    {
-      team:{id:6182,name:'Hc elite 7th',coach:'smajumder'},
-      tournamentId:"89e13aa2-ba6d-4f55-9cc2-61eba6172c63",
-      tournamentName:"March Madness",
-    },
-    {
-      team:{id:6183,name:'Hc elite',coach:'smajumder'},
-      tournamentId:"98c6857e-b0d1-4295-b89e-2d95a45437f2",
-      tournamentName:"Holiday hopes chalange",      
-    }
-  ]
+  favorites=[];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController,
-    public eliteApi:EliteApi
+    public eliteApi:EliteApi,
+    public userSettings:UserSettings
     ) {}
 
   ionViewDidLoad() {
@@ -45,12 +35,15 @@ export class MyTeamsPage {
     loader.present();
         this.eliteApi.getTournamentData(favorite.tournamentId)
         .subscribe(t=>this.navCtrl.push(TeamHomePage,favorite.team))
-
-        //this.navCtrl.push(TeamHomePage,favorite.team)
   }
 
   goToTournament(){
     this.navCtrl.push(TournamentsPage);
+  }
+
+  ionViewDidEnter()
+  {
+    this.favorites=this.userSettings.getAllFavarite();
   }
 
 }

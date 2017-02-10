@@ -5,5 +5,58 @@
 </ion-header>
 
 <ion-content padding>
-<h2>Standing Page</h2>
+  <ion-list>
+    <ion-item-group *ngFor="let division of allStanding" >
+      <ion-item-divider color="secondary">
+        {{division.divisionName}}
+      </ion-item-divider>
+      <ion-item *ngFor="let team of division.divisionStandings" >
+        <ion-row>
+          <ion-col>
+            <h2>{{team.teamName}}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Wins</h4>
+          </ion-col>
+          <ion-col>
+            <h4>losses</h4>
+          </ion-col>
+          <ion-col>
+            <h4>pct</h4>
+          </ion-col>
+          <ion-col>
+            <h4>PF</h4>
+          </ion-col>
+          <ion-col>
+            <h4>PA</h4>
+          </ion-col>
+          <ion-col>
+            <h4>Diff</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>{{team.wins}}</h4>
+          </ion-col>
+          <ion-col>
+            <h4>{{team.losses}}</h4>
+          </ion-col>
+          <ion-col>
+            <h4>{{team.winningPct}}</h4>
+          </ion-col>
+          <ion-col>
+            <h4>{{team.pointsFor}}</h4>
+          </ion-col>
+          <ion-col>
+            <h4>{{team.pointsAgainst}}</h4>
+          </ion-col>
+          <ion-col>
+            <h4>{{team.points}}</h4>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

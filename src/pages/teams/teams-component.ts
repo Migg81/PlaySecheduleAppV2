@@ -51,8 +51,7 @@ export class TeamsPage {
           );
       }
     );
-
-    
+        
     console.log('ionViewDidLoad TeamsPage');
   }
 
