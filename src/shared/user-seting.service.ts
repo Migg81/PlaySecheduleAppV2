@@ -4,29 +4,34 @@ import * as _ from 'lodash';
 
 @Injectable() 
 export class  UserSettings{
-    constructor(public storage: Storage) {        
-    }
 
+    storage=new  Storage(['localstorage']);
+    constructor() {        
+        
+    }
+    
     favariteTeam(team,tournamentId,tournamentName)
     {
-        this.storage.set('name', 'Max');
-
         let item ={team:team,tournamentId:tournamentId,tournamentName:tournamentName};
-        this.storage.set('2',JSON.stringify(item));
+        this.storage.set(team.id.toString(),JSON.stringify(item));
     }
     unFavariteTeam(team)
     {        
-        this.storage.remove(team.id);
+        this.storage.remove(team.id.toString());
     }
     isFavariteTeam(teamId)
     {
-        return this.storage.get(teamId).then(value=>value?true:false);
+        return this.storage.get(teamId.toString()).then(value=>value?true:false);
     }
 
     getAllFavarite(){
         let item=[];
         _.forIn(window.localStorage,(v,k)=>{
-            item.push(JSON.parse(v))
+            var t=JSON.parse(v);
+            var tt=JSON.parse(t);
+
+            var rr=JSON.parse(JSON.parse(v));
+            item.push(JSON.parse(JSON.parse(v)))
         });
 
         return item.length?item:null;
