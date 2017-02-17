@@ -28,4 +28,13 @@ export class GamePage {
     let team=tourneyData.team.find(t=>t.id===teamId);
     this.navCtrl.push(TeamHomePage,team)
   }  
+  goToDirections(){
+
+  }
+  goToMap(){
+
+  }
+  isWinner(score1,score2){
+    return Number(score1)>Number(score2)
+  }
 }
