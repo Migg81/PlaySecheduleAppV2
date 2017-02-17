@@ -7,6 +7,7 @@ export class EliteApi{
     private baseUrl="https://elite-secdule-app2.firebaseio.com";
 
     currentTourney:any={};
+   private  tourneyDates={};
 
     constructor(private http:Http){}
 
@@ -17,7 +18,14 @@ export class EliteApi{
         });
     }
 
-    getTournamentData(tournamentId):Observable<any>{
+    getTournamentData(tournamentId,forcereferesh:boolean=false):Observable<any>{
+
+        if(!forcereferesh && this.tourneyDates[tournamentId])
+        {
+            this.currentTourney=this.tourneyDates[tournamentId];
+            return Observable.of()
+        }
+
         return this.http.get(`${this.baseUrl}/tournaments-data/${tournamentId}.json`)
                     .map((response:Response)=>{
                         this.currentTourney=response.json();

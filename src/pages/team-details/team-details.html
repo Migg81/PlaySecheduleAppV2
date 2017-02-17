@@ -11,7 +11,9 @@
 
 
 <ion-content>
-<h2>Team detal Page</h2>
+<ion-refresher (ionRefresh)="refreshAll($event)">
+  <ion-refresher-content> </ion-refresher-content>
+</ion-refresher>
 <ion-card>
   <ion-card-content>
     <ion-row>
