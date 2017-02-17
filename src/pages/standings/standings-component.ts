@@ -18,6 +18,7 @@ export class StandingsPage {
   allStanding:any;
   standings:any[];
   team:any;
+  divisionFilter="division";
 
   constructor(
     public navCtrl: NavController,
@@ -28,12 +29,14 @@ export class StandingsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad StandingsPage');
     this.team=this.navParams.data;
-    let tourneyDate=this.eliteApi.getCurrenTourney();
-    this.standings=tourneyDate.standings;
+    let tourneyData=this.eliteApi.getCurrenTourney();
+    this.standings=tourneyData.standings;
 
     //this.allStanding=_.chain(this.standings).groupBy('division').toPairs()
     //.map(item=>_.zipObject(['divisionName','divisionStandings'],item))
     //.value()
+
+    this.allStanding=tourneyData.standings;
   }
 
   getHeader(record,recordIndex,records)
@@ -43,5 +46,15 @@ export class StandingsPage {
       return record.division;
     }
     return null;
+  }
+
+  filterDivision()
+  {
+    if(this.divisionFilter==="all"){
+      this.standings=this.allStanding;
+    }
+    else{
+      this.standings=_.filter(this.allStanding,s=>s.division===this.team.division);
+    }
   }
 }

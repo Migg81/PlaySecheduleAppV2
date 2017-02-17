@@ -2,12 +2,14 @@
 <ion-header>
   <ion-navbar>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-segment color="secondary" [(ngModel)]="divisionFilter" (ionChange)>
-      <ion-segment-button></ion-segment-button>
-      <ion-segment-button></ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <ion-segment secondary [(ngModel)]="divisionFilter" (ionChange)="filterDivision()">
+      <ion-segment-button value="division">
+                Division
+            </ion-segment-button>
+            <ion-segment-button value="all">
+                All
+            </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content padding>
