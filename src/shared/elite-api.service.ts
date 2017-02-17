@@ -18,17 +18,19 @@ export class EliteApi{
         });
     }
 
-    getTournamentData(tournamentId,forcereferesh:boolean=false):Observable<any>{
+    getTournamentData(tourneyId,forcereferesh:boolean=false):Observable<any>{
 
-        if(!forcereferesh && this.tourneyDates[tournamentId])
+        if(!forcereferesh && this.tourneyDates[tourneyId])
         {
-            this.currentTourney=this.tourneyDates[tournamentId];
-            return Observable.of()
+            this.currentTourney=this.tourneyDates[tourneyId];
+            console.log('****No need to make HTTP cal, just return the data.****');
+            return Observable.of(this.currentTourney)
         }
-
-        return this.http.get(`${this.baseUrl}/tournaments-data/${tournamentId}.json`)
-                    .map((response:Response)=>{
-                        this.currentTourney=response.json();
+        console.log('****About to make fresh HTTP call. ***')
+        return this.http.get(`${this.baseUrl}/tournaments-data/${tourneyId}.json`)
+                    .map(response=>{
+                        this.tourneyDates[tourneyId]=response.json();
+                        this.currentTourney=this.tourneyDates[tourneyId]
                         return this.currentTourney;
                     });
     }
@@ -36,5 +38,10 @@ export class EliteApi{
     getCurrenTourney()
     {
         return this.currentTourney;
+    }
+
+    refreshCurrentTourney()
+    {
+        return this.getTournamentData(this.currentTourney.tournament.id,true);
     }
 }

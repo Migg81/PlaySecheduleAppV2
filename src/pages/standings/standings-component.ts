@@ -16,7 +16,7 @@ import * as _ from 'lodash';
 export class StandingsPage {
 
   allStanding:any;
-  standing:any[];
+  standings:any[];
   team:any;
 
   constructor(
@@ -29,11 +29,19 @@ export class StandingsPage {
     console.log('ionViewDidLoad StandingsPage');
     this.team=this.navParams.data;
     let tourneyDate=this.eliteApi.getCurrenTourney();
-    this.standing=tourneyDate.standings;
+    this.standings=tourneyDate.standings;
 
-    this.allStanding=_.chain(this.standing).groupBy('division').toPairs()
-    .map(item=>_.zipObject(['divisionName','divisionStandings'],item))
-    .value()
+    //this.allStanding=_.chain(this.standings).groupBy('division').toPairs()
+    //.map(item=>_.zipObject(['divisionName','divisionStandings'],item))
+    //.value()
   }
 
+  getHeader(record,recordIndex,records)
+  {
+    if(recordIndex===0 || record.division !==records[recordIndex-1].division)
+    {
+      return record.division;
+    }
+    return null;
+  }
 }
