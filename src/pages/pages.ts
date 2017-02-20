@@ -5,3 +5,4 @@ export * from './team-details/team-detail-component';
 export * from  './teams/teams-component';
 export * from  './team-home/team-home-component';
 export * from  './standings/standings-component';
+export * from './map/map';

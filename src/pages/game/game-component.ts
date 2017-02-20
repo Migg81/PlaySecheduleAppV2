@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EliteApi } from '../../shared/shared';
-import { TeamHomePage } from '../pages';
+import {MapPage, TeamHomePage } from '../pages';
 
 @Component({
   selector: 'page-game',
@@ -31,10 +31,12 @@ export class GamePage {
   goToDirections(){
 
   }
-  goToMap(){
 
+  goToMap(){
+    this.navCtrl.push(MapPage,this.game);
   }
+
   isWinner(score1,score2){
-    return Number(score1)>Number(score2)
+    return Number(score1)>Number(score2);
   }
 }
